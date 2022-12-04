@@ -1,9 +1,7 @@
 import CursorIcon from "../../assets/cursor.svg";
+import { CursorProps } from "../../services/websocket/types";
 
-export interface CursorProps {
-    x: number;
-    y: number;
-}
+
 
 export const Cursor = ({ x, y }: CursorProps) => {
     return (

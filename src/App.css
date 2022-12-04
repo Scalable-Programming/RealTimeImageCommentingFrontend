@@ -1,8 +1,15 @@
 #root {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    cursor: none;
-    position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  cursor: none;
+  overflow: hidden;
+  position: relative;
+  background: url("https://img.freepik.com/premium-vector/map-europe-with-colors-flat-style_23-2147796452.jpg?w=2000");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

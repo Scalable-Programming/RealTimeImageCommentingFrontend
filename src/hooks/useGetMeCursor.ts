@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react";
+import { cursorApi } from "../services/websocket";
+import { CursorProps } from "../services/websocket/types";
 
 export const useGetMeCursor = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState<CursorProps>();
 
-    const onMouseMove = (event: MouseEvent) => {
-        const { pageX: x, pageY: y } = event;
-        setMousePosition({ x, y });
+  const onMouseMove = (event: MouseEvent) => {
+    const { pageX: x, pageY: y } = event;
+
+    const absolutePosition = {
+      x: `${(x / window.innerWidth) * 100}%`,
+      y: `${(y / window.innerHeight) * 100}%`,
     };
 
-    useEffect(() => {
-        document.addEventListener("mousemove", onMouseMove);
+    setMousePosition(absolutePosition);
+    cursorApi.emitCursorMove(absolutePosition);
+  };
 
-        return () => {
-            document.removeEventListener("mousemove", onMouseMove);
-        };
-    }, []);
+  useEffect(() => {
+    document.addEventListener("mousemove", onMouseMove);
 
-    return mousePosition;
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
+
+  return mousePosition;
 };

@@ -1,4 +1,4 @@
-import { useGetOtherCursors } from "../../api";
+import { useGetOtherCursors } from "../../hooks/useGetOtherCursors";
 import { Cursor } from "../Cursor";
 
 export const OtherCursors = () => {
@@ -6,8 +6,8 @@ export const OtherCursors = () => {
 
     return (
         <>
-            {cursors.map((coordinates) => (
-                <Cursor {...coordinates} />
+            {cursors.map((cursorData) => (
+                <Cursor key={cursorData.entityId} {...cursorData } />
             ))}
         </>
     );
