@@ -1,36 +1,3 @@
-import { io, Socket } from "socket.io-client";
-import { ApiCursorProps, CursorProps, EventListenerNames } from "./types";
+import { io } from "socket.io-client";
 
-class CursorApi {
-  #ws: Socket;
-
-  constructor() {
-    this.#ws = io(import.meta.env.VITE_WS_URL);
-  }
-
-  onGetOtherCursors(onData: (cursors: ApiCursorProps[]) => void) {
-    this.#ws.on(EventListenerNames.SEND_ALL_OTHER_CURSORS, (otherCursors) => {
-      onData(otherCursors);
-    });
-  }
-
-  onGetCursorMoved(onMove: (cursor: ApiCursorProps) => void) {
-    this.#ws.on(EventListenerNames.SEND_NEW_CURSOR_POSITION, (data) => {
-      onMove(data);
-    });
-  }
-
-  onCursorDisconnect(onRemoveCursor: (id: string) => void) {
-    this.#ws.on(EventListenerNames.CURSOR_DISCONNECT, (data) => {
-      onRemoveCursor(data);
-    });
-  }
-
-  async emitCursorMove({ x, y }: CursorProps) {
-    this.#ws.emit(EventListenerNames.CURSOR_MOVED, { x, y });
-  }
-}
-
-const cursorApi = new CursorApi();
-
-export { cursorApi };
+export const socket = io(import.meta.env.VITE_WS_URL);

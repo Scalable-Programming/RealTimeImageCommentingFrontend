@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import {} from "../components/Cursor";
-import { cursorApi } from "../services/websocket";
+import { cursorApi } from "../services/websocket/cursorApi";
 import { ApiCursorProps } from "../services/websocket/types";
 
 interface Props {

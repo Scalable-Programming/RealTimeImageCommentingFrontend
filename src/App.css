@@ -13,3 +13,16 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+  background-color: #2c2c2c;
+  resize: none;
+  cursor: none;
+}
